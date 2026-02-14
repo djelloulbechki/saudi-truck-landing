@@ -68,13 +68,14 @@
       <input type="text" id="name" placeholder="الاسم الكامل * | Full Name *" required
              class="w-full px-6 py-4 rounded-2xl bg-white/10 text-white placeholder-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400">
 
-      <!-- الجوال / Phone -->
+      <!-- الجوال / Phone – سعودي فقط -->
       <div class="relative">
-        <input type="tel" id="phone" placeholder="رقم الجوال مع مفتاح الدولة * | Phone with country code *" required pattern="\+[0-9]{8,15}" maxlength="15"
+        <input type="tel" id="phone" placeholder="501234567" required pattern="[5-9][0-9]{8}" maxlength="9" minlength="9"
                class="w-full px-6 py-4 rounded-2xl bg-white/10 text-white placeholder-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 phone-input">
       </div>
       <p class="text-sm text-white/70 text-center -mt-2">
-        مثال: +966501234567 | Example: +966501234567
+        أدخل رقم جوالك السعودي بدون الصفر (مثال: 501234567)  
+        Enter your Saudi mobile number without leading zero (Example: 501234567)
       </p>
 
       <!-- المنطقة / Region -->
@@ -97,7 +98,7 @@
         <option value="" disabled selected>سنة التصنيع * | Manufacturing Year *</option>
       </select>
 
-      <button type="submit" 
+      <button type="submit"
               class="w-full py-5 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xl font-bold rounded-2xl shadow-xl hover:shadow-green-500/50 transition-all duration-300 flex items-center justify-center gap-3">
         <span>سجّل الآن | Register Now</span>
         <span class="text-2xl">🚀</span>
@@ -182,12 +183,21 @@
       });
     });
 
-    // Submit
+    // Submit مع التحقق من رقم جوال سعودي
     document.getElementById('driverForm').onsubmit = async (e) => {
       e.preventDefault();
+
+      const phoneInput = document.getElementById('phone').value.trim();
+      
+      // التحقق: لازم 9 أرقام ويبدأ بـ5
+      if (!/^[5][0-9]{8}$/.test(phoneInput)) {
+        alert('يرجى إدخال رقم جوال سعودي صحيح (يبدأ بـ5 و9 أرقام بدون صفر) | Please enter a valid Saudi mobile number (starts with 5, 9 digits, no leading zero)');
+        return;
+      }
+
       const formData = {
         name: document.getElementById('name').value.trim(),
-        phone: document.getElementById('phone').value.trim(),
+        phone: '+966' + phoneInput,  // ← إضافة +966 تلقائيًا
         region: regionSelect.value,
         governorate: governorateSelect.value,
         truck_type: truckSelect.value,
@@ -202,7 +212,7 @@
         });
 
         if (res.ok) {
-          alert('✅ تم التسجيل بنجاح! سيتم التواصل معك قريبًا | Registration successful! We will contact you soon.');
+          alert(`✅ تم التسجيل بنجاح! رقمك المسجل: ${formData.phone}\nسيتم التواصل معك قريبًا | Registration successful! Your registered number: ${formData.phone}\nWe will contact you soon.`);
           e.target.reset();
         } else {
           alert('❌ حدث خطأ، يرجى المحاولة مرة أخرى | An error occurred, please try again');
