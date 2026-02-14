@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saudi Truck - سجل شاحنتك الآن</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Cairo', sans-serif; }
+    .glow { box-shadow: 0 0 40px rgba(46, 204, 113, 0.5); }
+
+    /* ستايل الدروب داون الواضح */
+    select {
+      background-color: rgba(30, 77, 43, 0.8) !important;
+      color: white !important;
+      border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat;
+      background-position: left 1rem center;
+      background-size: 14px;
+      padding-right: 2.8rem;
+      padding-left: 2.5rem;
+    }
+
+    select option {
+      background-color: #1E4D2B !important;
+      color: white !important;
+      padding: 14px 16px !important;
+      font-size: 16px !important;
+    }
+
+    select option:hover {
+      background-color: #2ECC71 !important;
+      color: black !important;
+    }
+
+    select:focus {
+      outline: none !important;
+      box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.6) !important;
+    }
+
+    /* حقل الجوال: اتجاه LTR للأرقام */
+    .phone-input {
+      direction: ltr !important;
+      text-align: left !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#1E4D2B] via-[#0F3A22] to-[#1E4D2B] flex items-center justify-center p-4">
+  <div class="max-w-lg w-full bg-white/10 backdrop-blur-xl rounded-3xl p-8 glow border border-white/20">
+    <div class="text-center mb-8">
+      <div class="mx-auto w-24 h-24 bg-white/20 rounded-full flex items-center justify-center glow mb-4">
+        <span class="text-5xl">🚛</span>
+      </div>
+      <h1 class="text-4xl font-black text-white mb-2 tracking-wider">Saudi Truck</h1>
+      <p class="text-xl text-green-300 font-bold">سجّل شاحنتك الآن وابدأ استقبال طلبات النقل فورًا</p>
+      <p class="text-lg text-white/80 mt-2">Register your truck now and start receiving transport requests immediately</p>
+    </div>
+
+    <form id="driverForm" class="space-y-6">
+      <!-- الاسم / Name -->
+      <input type="text" id="name" placeholder="الاسم الكامل * | Full Name *" required
+             class="w-full px-6 py-4 rounded-2xl bg-white/10 text-white placeholder-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400">
+
+      <!-- الجوال / Phone -->
+      <div class="relative">
+        <input type="tel" id="phone" placeholder="رقم الجوال مع مفتاح الدولة * | Phone with country code *" required pattern="\+[0-9]{8,15}" maxlength="15"
+               class="w-full px-6 py-4 rounded-2xl bg-white/10 text-white placeholder-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400 phone-input">
+      </div>
+      <p class="text-sm text-white/70 text-center -mt-2">
+        مثال: +966501234567 | Example: +966501234567
+      </p>
+
+      <!-- المنطقة / Region -->
+      <select id="region" required class="w-full px-6 py-4 rounded-2xl bg-white/10 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400">
+        <option value="" disabled selected>اختر المنطقة * | Select Region *</option>
+      </select>
+
+      <!-- المحافظة / Governorate -->
+      <select id="governorate" required class="w-full px-6 py-4 rounded-2xl bg-white/10 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400">
+        <option value="" disabled selected>اختر المحافظة * | Select Governorate *</option>
+      </select>
+
+      <!-- نوع الشاحنة / Truck Type -->
+      <select id="truckType" required class="w-full px-6 py-4 rounded-2xl bg-white/10 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400">
+        <option value="" disabled selected>نوع الشاحنة * | Truck Type *</option>
+      </select>
+
+      <!-- سنة التصنيع / Manufacturing Year -->
+      <select id="manufacturingYear" required class="w-full px-6 py-4 rounded-2xl bg-white/10 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-400">
+        <option value="" disabled selected>سنة التصنيع * | Manufacturing Year *</option>
+      </select>
+
+      <button type="submit" 
+              class="w-full py-5 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xl font-bold rounded-2xl shadow-xl hover:shadow-green-500/50 transition-all duration-300 flex items-center justify-center gap-3">
+        <span>سجّل الآن | Register Now</span>
+        <span class="text-2xl">🚀</span>
+      </button>
+    </form>
+
+    <div class="text-center mt-10 text-white/70">
+      <p class="text-3xl font-bold">انضم <span id="counter" class="text-green-400">8,742</span> سائق حتى الآن</p>
+      <p class="text-sm mt-2">Join <span id="counter-en" class="text-green-400">8,742</span> drivers so far</p>
+    </div>
+  </div>
+
+  <script>
+    // القوائم من Flutter (نفس اللي في التطبيق)
+    const saudiRegions = {
+      "Riyadh Region - منطقة الرياض": ["الرياض", "الخرج", "الدوادمي", "المزاحمية", "القويعية", "الدرعية", "الزلفي", "شقراء"],
+      "Makkah Region - منطقة مكة المكرمة": ["جدة", "مكة", "الطائف", "القنفذة", "الليث", "رابغ"],
+      "Madinah Region - منطقة المدينة المنورة": ["المدينة المنورة", "ينبع", "العلا", "بدر"],
+      "Eastern Province - المنطقة الشرقية": ["الدمام", "الأحساء", "الخبر", "الجبيل", "القطيف"],
+      "Asir Region - منطقة عسير": ["أبها", "خميس مشيط", "بيشة"],
+      "Tabuk Region - منطقة تبوك": ["تبوك", "ضباء"],
+      "Hail Region - منطقة حائل": ["حائل"],
+      "Jazan Region - منطقة جازان": ["جازان", "صبيا"],
+      "Najran Region - منطقة نجران": ["نجران"],
+      "Al Baha Region - منطقة الباحة": ["الباحة"],
+      "Al Jawf Region - منطقة الجوف": ["سكاكا"],
+      "Qassim Region - منطقة القصيم": ["بريدة", "عنيزة"]
+    };
+
+    const truckTypes = [
+      'دينا صغيرة - light truck', 'دينا كبيرة - medium truck', 'دينا 10 طن - 10-ton rigid truck',
+      'دينا 24 طن - 24-ton rigid truck', 'قلاب دينا - small dump truck', 'قلاب 10 طن - 10-ton dump truck',
+      'قلاب 24 طن - 24-ton dump truck', 'قلاب تريلا - articulated dump trailer', 'تريلا - tractor head + semi-trailer',
+      'تريلا فلات - flatbed semi-trailer', 'فلات - flatbed trailer', 'فلات 40 قدم - 40ft flatbed trailer',
+      'لوبوي - lowboy/lowbed trailer', 'سطحة - lowbed trailer', 'سطحة 3 محاور - 3-axle lowbed',
+      'سطحة 4 محاور - 4-axle lowbed', 'تريلا صندوق - dry van semi-trailer', 'صندوق - box trailer',
+      'ثلاجة - refrigerated trailer (reefer)', 'تريلا ثلاجة - reefer semi-trailer', 'وايت ماء - water tanker truck',
+      'وايت 6 طن - 6-ton water tanker', 'وايت 10 طن - 10-ton water tanker', 'وايت 32 طن - 32-ton water tanker trailer',
+      'تانكي ديزل - fuel tanker', 'تانكي بنزين - petrol tanker', 'بلكر - bulk cement trailer',
+      'بلكر أسمنت - cement bulker', 'خلاطة - concrete truck', 'خلاطة 9 متر - 9m³ transit mixer',
+      'خلاطة 12 متر - 12m³ transit mixer', 'هاف لوري - old medium truck', 'لوري - heavy truck',
+      'شاص - toyota pickup', 'راس تريلا - tractor unit', 'كرين - mobile crane truck',
+      'كرين 10 طن - 10-ton boom truck', 'مان ليفت - manlift', 'صهريج صرف صحي - vacuum tanker'
+    ];
+
+    // ملء القوائم
+    const regionSelect = document.getElementById('region');
+    const governorateSelect = document.getElementById('governorate');
+    const truckSelect = document.getElementById('truckType');
+    const yearSelect = document.getElementById('manufacturingYear');
+
+    Object.keys(saudiRegions).forEach(region => {
+      const option = document.createElement('option');
+      option.value = region;
+      option.textContent = region;
+      regionSelect.appendChild(option);
+    });
+
+    truckTypes.forEach(type => {
+      const option = document.createElement('option');
+      option.value = type;
+      option.textContent = type;
+      truckSelect.appendChild(option);
+    });
+
+    for (let y = 2026; y >= 1990; y--) {
+      const option = document.createElement('option');
+      option.value = y;
+      option.textContent = y;
+      yearSelect.appendChild(option);
+    }
+
+    // Conditional governorates
+    regionSelect.addEventListener('change', () => {
+      governorateSelect.innerHTML = '<option value="" disabled selected>اختر المحافظة * | Select Governorate *</option>';
+      const govs = saudiRegions[regionSelect.value] || [];
+      govs.forEach(g => {
+        const opt = document.createElement('option');
+        opt.value = g;
+        opt.textContent = g;
+        governorateSelect.appendChild(opt);
+      });
+    });
+
+    // Submit
+    document.getElementById('driverForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = {
+        name: document.getElementById('name').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        region: regionSelect.value,
+        governorate: governorateSelect.value,
+        truck_type: truckSelect.value,
+        manufacturing_year: parseInt(yearSelect.value)
+      };
+
+      try {
+        const res = await fetch('https://revwa.cloud/webhook/driver-landing-registration', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        if (res.ok) {
+          alert('✅ تم التسجيل بنجاح! سيتم التواصل معك قريبًا | Registration successful! We will contact you soon.');
+          e.target.reset();
+        } else {
+          alert('❌ حدث خطأ، يرجى المحاولة مرة أخرى | An error occurred, please try again');
+        }
+      } catch (err) {
+        alert('❌ خطأ في الاتصال بالسيرفر | Server connection error');
+      }
+    };
+  </script>
+</body>
+</html>
