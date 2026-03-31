@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>سجل حفارتك - منصة حفر الآبار</title>
 
-  <!-- Meta Pixel Code -->
-<script>
+  <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -21,44 +20,23 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1615254396562262&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
-
-  <!-- TikTok Pixel Code Start -->
-<!-- TikTok Pixel Code Start -->
 <script>
 !function (w, d, t) {
   w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
 var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
 ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
 
   ttq.load('D68FFGJC77U5Q2MP8CF0');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
-<!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-
   ttq.load('D68G34JC77U1GPVV3H0G');
   ttq.page();
 }(window, document, 'ttq');
 </script>
-<!-- TikTok Pixel Code End -->
-  
-  <!-- TikTok Pixel Code End -->
-  
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
 
   <style>
     body { font-family: 'Cairo', sans-serif; }
-    .glow { box-shadow: 0 0 40px rgba(52, 152, 219, 0.4); } /* تم تغيير اللون للأزرق قليلاً لتمييز الخدمة */
+    .glow { box-shadow: 0 0 40px rgba(52, 152, 219, 0.4); }
     
     .phone-input {
       direction: ltr !important;
@@ -94,7 +72,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         <p class="text-xs text-white/50 mt-2 text-center">مثال: 0501234567</p>
       </div>
 
-      <button type="submit"
+      <button type="submit" id="submitBtn"
               class="w-full py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-xl font-bold rounded-2xl shadow-xl hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center gap-3">
         <span>انضم للمنصة الآن</span>
         <span class="text-2xl">⚡</span>
@@ -109,13 +87,18 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <script>
     document.getElementById('rigForm').onsubmit = async (e) => {
       e.preventDefault();
+      
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = 'جاري التسجيل...';
 
       let phoneInput = document.getElementById('phone').value.trim();
-      // تنظيف الرقم
       phoneInput = phoneInput.replace(/[\s\-\+]/g, '');
 
       if (!/^[05][0-9]{8,9}$/.test(phoneInput)) {
         alert('يرجى إدخال رقم جوال صحيح');
+        btn.disabled = false;
+        btn.innerHTML = '<span>انضم للمنصة الآن</span><span class="text-2xl">⚡</span>';
         return;
       }
 
@@ -129,7 +112,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
       };
 
       try {
-        // ملاحظة: غير الرابط أدناه برابط الـ Webhook الخاص بك الجديد
         const res = await fetch('https://revwa.cloud/webhook/well-rig-registration', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -137,13 +119,21 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
         });
 
         if (res.ok) {
-          alert('تم استلام طلبك بنجاح، سنتواصل معك قريباً');
-          // window.location.href = '/thank-you.html'; 
+          // تتبع التحويل قبل التوجيه
+          if(typeof fbq !== 'undefined') fbq('track', 'CompleteRegistration');
+          if(typeof ttq !== 'undefined') ttq.track('CompleteRegistration');
+          
+          // التوجيه لصفحة الشكر (تأكد أن الملف اسمه thank-you.html)
+          window.location.href = '/thank-you.html?phone=' + encodeURIComponent(cleanPhone);
         } else {
           alert('حدث خطأ، حاول مرة أخرى');
+          btn.disabled = false;
+          btn.innerHTML = '<span>انضم للمنصة الآن</span><span class="text-2xl">⚡</span>';
         }
       } catch (err) {
         alert('خطأ في الاتصال بالسيرفر');
+        btn.disabled = false;
+        btn.innerHTML = '<span>انضم للمنصة الآن</span><span class="text-2xl">⚡</span>';
       }
     };
   </script>
